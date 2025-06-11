@@ -1,3 +1,11 @@
+"""Shapeshifter demo module.
+
+This script showcases a custom Keras layer that performs a toroidal wrap on
+2D tensors and provides a Gradio interface for quick experimentation. The demo
+also includes a lightweight text-generation example to verify memory
+availability before running a small T5 model.
+"""
+
 import psutil
 import gradio as gr
 import tensorflow as tf
@@ -26,9 +34,11 @@ class TransversalWrapLayer(Layer):
         Expected shape: (batch_size, height, width, channels).
         Returns: (batch_size, height + 2, width + 2, channels).
         """
-        # Wrap horizontally (concat the last column to the front, first column to the end)
+        # Wrap horizontally by concatenating the last column at the front and
+        # the first column at the end
         wrapped = tf.concat([inputs[:, :, -1:], inputs, inputs[:, :, :1]], axis=2)
-        # Wrap vertically (concat the last row on top, the first row on the bottom)
+        # Wrap vertically by concatenating the last row on top and the first row
+        # at the bottom
         wrapped = tf.concat([wrapped[:, -1:, :], wrapped, wrapped[:, :1, :]], axis=1)
         return wrapped
 
@@ -62,6 +72,14 @@ def wrap_demo(height, width):
 #    or any small HF TF model for text generation.
 ##############################################
 def check_memory_and_infer(prompt):
+    """Run a memory check and optionally perform text generation.
+
+    This function verifies that at least ~2 GB of RAM is free before loading
+    a small TensorFlow T5 model for demonstration purposes. If the environment
+    does not have enough memory, it returns a warning string instead of running
+    the model.
+    """
+
     # Check available memory
     total_mem_gb = psutil.virtual_memory().total / (1024**3)
     avail_mem_gb = psutil.virtual_memory().available / (1024**3)
@@ -87,6 +105,8 @@ def check_memory_and_infer(prompt):
 # 4) Build Gradio Interface
 ##############################################
 def build_gradio_app():
+    """Construct and return the Gradio Blocks demo."""
+
     with gr.Blocks() as demo:
 
         gr.Markdown("# Shapeshifter Mini-IDE")
@@ -112,6 +132,7 @@ def build_gradio_app():
 
             # Define the callback for the wrap demo
             def run_wrap_demo(h, w):
+                """Execute the wrapping demo and format results for display."""
                 before_np, after_np = wrap_demo(int(h), int(w))
                 return (str(before_np), str(after_np))
 
