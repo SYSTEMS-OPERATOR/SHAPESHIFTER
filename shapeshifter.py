@@ -10,7 +10,6 @@ import psutil
 import gradio as gr
 import tensorflow as tf
 from tensorflow.keras.layers import Layer
-from huggingface_hub import login, hf_hub_download
 import transformers
 
 ##############################################

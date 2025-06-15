@@ -1,12 +1,10 @@
 # SHAPESHIFTER
-Seamless Model Optimizer
 
-# SHAPESHIFTER  
 ![shapeshifter](https://github.com/user-attachments/assets/ba5a399a-659e-4669-8b4c-a3d4ab1a6ac1)
 
-## Seamless Model Optimizer  
+## Seamless Model Optimizer
 
-SHAPESHIFTER is an **AI performance enhancement tool** designed to **improve boundary efficiency** and **tensor continuity** in machine learning models.  
+SHAPESHIFTER is an **AI performance enhancement tool** designed to **improve boundary efficiency** and **tensor continuity** in machine learning models.
 
 ### Features:  
 ✔ **Transversal Edge Optimization** – Enhances tensor propagation through adaptive boundary conditions.  
