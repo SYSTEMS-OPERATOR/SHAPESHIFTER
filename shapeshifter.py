@@ -89,8 +89,14 @@ def check_memory_and_infer(prompt):
     # If we have enough memory, load a small T5 model from HF (TensorFlow version)
     # We do it once for demonstration, but ideally you'd cache or load in initialization.
     model_name = "google/t5-small-ssm-nq"  # small T5 variant with TF weights
-    tokenizer = transformers.T5Tokenizer.from_pretrained(model_name)
-    t5_model = transformers.TFT5ForConditionalGeneration.from_pretrained(model_name)
+    try:
+        tokenizer = transformers.T5Tokenizer.from_pretrained(model_name)
+        t5_model = transformers.TFT5ForConditionalGeneration.from_pretrained(model_name)
+    except ImportError as exc:
+        return (
+            "Required library missing: sentencepiece. "
+            "Install it with `pip install sentencepiece` and try again."
+        )
 
     # Prepare prompt for T5: we typically prefix with "translate English to French:" or
     # "summarize: " or whatever task. For a naive text generation, we can do a simple approach:
