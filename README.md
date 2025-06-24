@@ -22,7 +22,7 @@ SHAPESHIFTER is designed for **AI researchers, ML engineers, and advanced deep l
 1. Install dependencies:
 
 ```bash
-pip install gradio tensorflow psutil transformers
+pip install gradio tensorflow psutil sentencepiece transformers
 ```
 
 2. Launch the demo:
