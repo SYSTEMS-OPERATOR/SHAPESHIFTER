@@ -28,7 +28,7 @@ class TransversalWrapLayer(Layer):
 
     def call(self, inputs):
         """
-        Transverses the tensor to create seamless edges by wrapping rows and columns.
+        Traverses the tensor to create seamless edges by wrapping rows and columns.
 
         Expected shape: (batch_size, height, width, channels).
         Returns: (batch_size, height + 2, width + 2, channels).
@@ -38,7 +38,9 @@ class TransversalWrapLayer(Layer):
         wrapped = tf.concat([inputs[:, :, -1:], inputs, inputs[:, :, :1]], axis=2)
         # Wrap vertically by concatenating the last row on top and the first row
         # at the bottom
-        wrapped = tf.concat([wrapped[:, -1:, :], wrapped, wrapped[:, :1, :]], axis=1)
+        wrapped = tf.concat(
+            [wrapped[:, -1:, :, :], wrapped, wrapped[:, :1, :, :]], axis=1
+        )
         return wrapped
 
 ##############################################
