@@ -43,3 +43,7 @@ After running, open the provided Gradio URL in your browser to explore the layer
 Automated tests run on every push and pull request using GitHub Actions. The
 workflow installs the dependencies from `requirements.txt` and executes the unit
 tests with `pytest` to ensure the core wrapping logic works across environments.
+
+## Program Flow Diagram
+
+For a visual overview of how the main script works, see [FLOW.md](./FLOW.md). It contains a Mermaid diagram describing the interactions between the wrapping layer, the demo utilities, and the Gradio interface.
