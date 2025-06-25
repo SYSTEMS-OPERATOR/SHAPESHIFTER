@@ -6,7 +6,6 @@ pytest.importorskip("gradio")
 pytest.importorskip("psutil")
 
 from shapeshifter import TransversalWrapLayer
-import tensorflow as tf
 
 
 def test_transversal_wrap_layer():
