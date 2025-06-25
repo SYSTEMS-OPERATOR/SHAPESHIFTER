@@ -38,8 +38,8 @@ python shapeshifter.py
 
 After running, open the provided Gradio URL in your browser to explore the layer wrapping demo and text-generation example.
 
-3. Run tests (optional):
+## Continuous Integration 🚦
 
-```bash
-pytest -q
-```
+Automated tests run on every push and pull request using GitHub Actions. The
+workflow installs the dependencies from `requirements.txt` and executes the unit
+tests with `pytest` to ensure the core wrapping logic works across environments.
