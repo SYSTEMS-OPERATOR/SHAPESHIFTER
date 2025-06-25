@@ -94,7 +94,7 @@ def check_memory_and_infer(prompt):
     try:
         tokenizer = transformers.T5Tokenizer.from_pretrained(model_name)
         t5_model = transformers.TFT5ForConditionalGeneration.from_pretrained(model_name)
-    except ImportError as exc:
+    except ImportError:
         return (
             "Required library missing: sentencepiece. "
             "Install it with `pip install sentencepiece` and try again."
