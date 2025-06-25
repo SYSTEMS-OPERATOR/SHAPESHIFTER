@@ -134,9 +134,8 @@ The interface is split into tabs:
    - A text input for your prompt.  
    - A “Run Inference” button that checks memory, loads a small T5 model, and returns the generated text.
 
-### 5.3 Recommended Usage in Kaggle/Google Colab 💻
-- **Install Dependencies**: `pip install gradio tensorflow psutil sentencepiece huggingface_hub transformers`.
-- **Run Script**: The script starts the Gradio server, providing a link.  
+- **Install Dependencies**: `pip install -r requirements.txt`.
+- **Run Script**: The script starts the Gradio server, providing a link.
 - **Try the Demo**: Adjust the dummy tensor size, see the wrapping effect, and optionally test text generation if memory allows.
 
 ---

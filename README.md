@@ -37,3 +37,9 @@ python shapeshifter.py
 ```
 
 After running, open the provided Gradio URL in your browser to explore the layer wrapping demo and text-generation example.
+
+3. Run tests (optional):
+
+```bash
+pytest -q
+```
