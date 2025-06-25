@@ -25,7 +25,12 @@ SHAPESHIFTER is designed for **AI researchers, ML engineers, and advanced deep l
 pip install -r requirements.txt
 ```
 
-2. Launch the demo:
+2. (Optional) run the unit tests to verify the environment:
+
+```bash
+pytest -q
+```
+3. Launch the demo:
 
 ```bash
 python shapeshifter.py
