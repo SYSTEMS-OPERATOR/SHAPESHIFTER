@@ -7,10 +7,18 @@ availability before running a small T5 model.
 """
 
 import psutil
-import gradio as gr
+try:  # Gradio is optional for running the tests
+    import gradio as gr
+except ImportError:  # pragma: no cover - gradio not needed for core logic
+    gr = None
+
 import tensorflow as tf
 from tensorflow.keras.layers import Layer
-import transformers
+
+try:  # Transformers is only required for the inference demo
+    import transformers
+except ImportError:  # pragma: no cover - allow tests without transformers
+    transformers = None
 
 ##############################################
 # 1) Custom TransversalWrapLayer
@@ -88,6 +96,9 @@ def check_memory_and_infer(prompt):
     if avail_mem_gb < 2.0:
         return f"Insufficient memory ({avail_mem_gb:.2f} GB available). Try a smaller model or a bigger runtime."
 
+    if transformers is None:
+        return "Transformers library is required for inference but is not installed."
+
     # If we have enough memory, load a small T5 model from HF (TensorFlow version)
     # We do it once for demonstration, but ideally you'd cache or load in initialization.
     model_name = "google/t5-small-ssm-nq"  # small T5 variant with TF weights
@@ -113,6 +124,9 @@ def check_memory_and_infer(prompt):
 ##############################################
 def build_gradio_app():
     """Construct and return the Gradio Blocks demo."""
+
+    if gr is None:
+        raise ImportError("gradio is required to build the demo application")
 
     with gr.Blocks() as demo:
 
