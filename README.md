@@ -22,7 +22,7 @@ SHAPESHIFTER is designed for **AI researchers, ML engineers, and advanced deep l
 1. Install dependencies:
 
 ```bash
-pip install gradio tensorflow psutil sentencepiece transformers
+pip install -r requirements.txt
 ```
 
 2. Launch the demo:
@@ -32,3 +32,9 @@ python shapeshifter.py
 ```
 
 After running, open the provided Gradio URL in your browser to explore the layer wrapping demo and text-generation example.
+
+3. Run tests (optional):
+
+```bash
+pytest -q
+```

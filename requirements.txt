@@ -1,0 +1,6 @@
+gradio
+psutil
+sentencepiece
+tensorflow==2.17.1
+transformers
+pytest
