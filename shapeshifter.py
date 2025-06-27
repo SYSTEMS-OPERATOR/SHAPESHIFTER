@@ -6,7 +6,10 @@ also includes a lightweight text-generation example to verify memory
 availability before running a small T5 model.
 """
 
-import psutil
+try:  # psutil is required for the memory check demo but optional for tests
+    import psutil
+except ImportError:  # pragma: no cover - allow tests without psutil installed
+    psutil = None
 try:  # Gradio is optional for running the tests
     import gradio as gr
 except ImportError:  # pragma: no cover - gradio not needed for core logic
@@ -88,6 +91,9 @@ def check_memory_and_infer(prompt):
     does not have enough memory, it returns a warning string instead of running
     the model.
     """
+
+    if psutil is None:
+        return "psutil is required for the memory check but is not installed."
 
     # Check available memory
     total_mem_gb = psutil.virtual_memory().total / (1024**3)
